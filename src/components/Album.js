@@ -16,16 +16,20 @@ class Album extends Component {
       isPlaying: false
     };
 
-    play() {
-    this.audioElement.play();
-    this.setState({ isPlaying: true });
-    this.setState({ album.song[index + 1]: album.song.ion-pause });
-  }
+     this.audioElement = document.createElement('audio');
+     this.audioElement.src = album.songs[0].audioSrc;
+ }
 
-  pause() {
+    play() {
+       this.audioElement.play();
+       this.setState({ isPlaying: true });
+       this.setState({ album.song[0]: album.song.ion-pause });
+    }
+
+    pause() {
        this.audioElement.pause();
        this.setState({ isPlaying: false)};
-       this.setState({ album.song[index + 1]: album.song.ion-play });
+       this.setState({ album.song[0]: album.song.ion-play });
      }
 
      setSong(song) {
@@ -41,24 +45,19 @@ class Album extends Component {
              if (!isSameSong) { this.setSong(song); }
              this.play();
            }
-     }
-
-     handleSongHover(song){
-       if(this.state.isPlaying: false){
-         this.setState({ album.song[index + 1]: album.song.ion-play });
-       }
-     }
-
-     handleSongLeave(song){
-       if(this.state.isPlaying: false){
-         this.setState({ album.song.ion-play: album.song[index + 1] });
-       }
       }
 
+     handleSongHover(song, index){
+       if(this.state.isPlaying: false){
+         this.setState({ album.song[0]: album.song.ion-play });
+       }
+     }
 
-    this.audioElement = document.createElement('audio');
-    this.audioElement.src = album.songs[0].audioSrc;
-   }
+     handleSongLeave(song, index){
+       if(this.state.isPlaying: false){
+         this.setState({ album.song.ion-play: album.song[0] });
+      }
+    }
 
   render() {
     return (
@@ -82,10 +81,10 @@ class Album extends Component {
              this.state.album.songs.map( (song, index) =>
                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)} >
                   <td>{album.song[index + 1]}</td>
-                  <td>{album.song.title}</td>
-                  <td>{album.song.duration}</td>
                   <span className="ion-play"></span>
                   <span className="ion-pause"></span>
+                  <td>{album.song.title}</td>
+                  <td>{album.song.duration}</td>
                </tr>
              )
            }
