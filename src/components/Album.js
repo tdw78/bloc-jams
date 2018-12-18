@@ -13,7 +13,8 @@ class Album extends Component {
     this.state = {
       album: album,
       currentSong: album.songs[0],
-      isPlaying: false
+      isPlaying: false,
+      isHovered: false
     };
 
      this.audioElement = document.createElement('audio');
@@ -23,13 +24,13 @@ class Album extends Component {
     play() {
        this.audioElement.play();
        this.setState({ isPlaying: true });
-       this.setState({ album.song[0]: album.song.ion-pause });
+       return <span className="ion-pause"></span>;
     }
 
     pause() {
        this.audioElement.pause();
        this.setState({ isPlaying: false)};
-       this.setState({ album.song[0]: album.song.ion-play });
+       return <span className="ion-play"></span>;
      }
 
      setSong(song) {
@@ -48,16 +49,13 @@ class Album extends Component {
       }
 
      handleSongHover(song, index){
-       if(this.state.isPlaying: false){
-         this.setState({ album.song[0]: album.song.ion-play });
-       }
+       this.setState({isHovered: true});
+       if(this.state.isHovered === true && this.state.isPlaying === false){
+           return <span className="ion-play"></span>;
+         }else if(this.state.isHovered === true && this.state.isPlaying === true){
+           return <span className="ion-pause"></span>;
+         }
      }
-
-     handleSongLeave(song, index){
-       if(this.state.isPlaying: false){
-         this.setState({ album.song.ion-play: album.song[0] });
-      }
-    }
 
   render() {
     return (
@@ -79,7 +77,7 @@ class Album extends Component {
            <tbody>
            {
              this.state.album.songs.map( (song, index) =>
-                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song)} onMouseLeave={() => this.handleSongLeave(song)} >
+                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song, index)} >
                   <td>{album.song[index + 1]}</td>
                   <span className="ion-play"></span>
                   <span className="ion-pause"></span>
