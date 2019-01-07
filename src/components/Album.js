@@ -24,13 +24,11 @@ class Album extends Component {
     play() {
        this.audioElement.play();
        this.setState({ isPlaying: true });
-       return <span className="ion-pause"></span>;
     }
 
     pause() {
        this.audioElement.pause();
-       this.setState({ isPlaying: false)};
-       return <span className="ion-play"></span>;
+       this.setState({ isPlaying: false});
      }
 
      setSong(song) {
@@ -48,13 +46,28 @@ class Album extends Component {
            }
       }
 
-     handleSongHover(song, index){
-       this.setState({isHovered: true});
-       if(this.state.isHovered === true && this.state.isPlaying === false){
-           return <span className="ion-play"></span>;
-         }else if(this.state.isHovered === true && this.state.isPlaying === true){
-           return <span className="ion-pause"></span>;
-         }
+      handleSongHover(song, index){
+        this.setState({isHovered: true});
+      }
+
+
+     handleOffHover(song, index){
+       this.setState({isHovered: false});
+     }
+
+     rowPlayPause(song, index){
+       const play = <span className="icon ion-md-play-circle"></span>
+       const pause = <span className="icon ion-md-pause"></span>
+       const songNum = index + 1;
+       if(song === this.state.currentSong && !this.state.isPlaying && this.state.isHovered === false){
+         return songNum;
+       }else if(song === this.state.currentSong && this.state.isPlaying){
+         return pause;
+       }else if(this.state.isHovered === true){
+         return play;
+       }else if(song !== this.state.currentSong && this.state.isHovered === false){
+         return songNum;
+       }
      }
 
   render() {
@@ -77,12 +90,11 @@ class Album extends Component {
            <tbody>
            {
              this.state.album.songs.map( (song, index) =>
-                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleSongHover(song, index)} >
-                  <td>{album.song[index + 1]}</td>
-                  <span className="ion-play"></span>
-                  <span className="ion-pause"></span>
-                  <td>{album.song.title}</td>
-                  <td>{album.song.duration}</td>
+                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseOver={() => this.handleSongHover(song, index)} onMouseLeave={()=> this.handleOffHover(song, index)} >
+                  <td>{song[index + 1]}</td>
+                  <td>{this.rowPlayPause(song, index)}</td>
+                  <td>{song.title}</td>
+                  <td>{song.duration}</td>
                </tr>
              )
            }
