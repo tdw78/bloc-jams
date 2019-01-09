@@ -79,6 +79,14 @@ class Album extends Component {
        this.play();
      }
 
+     handleNextClick() {
+       const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+       const newIndex = currentIndex + 1;
+       const newSong = this.state.album.songs[newIndex];
+       this.setSong(newSong);
+       this.play();
+     }
+
   render() {
     return (
       <section className="album">
@@ -99,7 +107,12 @@ class Album extends Component {
            <tbody>
            {
              this.state.album.songs.map( (song, index) =>
-                <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseOver={() => this.handleSongHover(song, index)} onMouseLeave={()=> this.handleOffHover(song, index)} >
+                <tr className="song"
+                  key={index}
+                  onClick={() => this.handleSongClick(song)}
+                  onMouseOver={() => this.handleSongHover(song, index)}
+                  onMouseLeave={()=> this.handleOffHover(song, index)}
+                  >
                   <td>{song[index + 1]}</td>
                   <td>{this.rowPlayPause(song, index)}</td>
                   <td>{song.title}</td>
@@ -114,6 +127,7 @@ class Album extends Component {
            currentSong={this.state.currentSong}
            handleSongClick={() => this.handleSongClick(this.state.currentSong)}
            handlePrevClick={() => this.handlePrevClick()}
+           handleNextClick={() => this.handleNextClick()}
          />
       </section>
     );
