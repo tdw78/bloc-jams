@@ -114,7 +114,7 @@ class Album extends Component {
     this.audioElement.currentTime = newTime;
     this.setState({ currentTime: newTime });
   }
-
+  
 
   render() {
     return (
