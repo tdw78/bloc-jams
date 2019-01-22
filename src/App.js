@@ -7,14 +7,36 @@ import Album from './components/Album';
 
 class App extends Component {
   render() {
+    const headerStyles = {
+      color: "#DAA520",
+      backgroundColor: "#800000",
+      fontFamily: "Georgia",
+      fontSize: 120,
+      paddingTop: 4,
+      paddingBottom: 4,
+      paddingRight: 16,
+      paddingLeft: 16,
+      letterSpacing: 12,
+      wordSpacing: 24
+    }
+
+    const buttonStyles = {
+      color: "#0000CD",
+      fontFamily: "Georgia",
+      fontWeight: "bold",
+      fontSize: 12,
+      backgroundColor: "#ADD8E6",
+      letterSpacing: 2
+    }
+
     return (
       <div className="App">
         <header>
+          <span class="text-uppercase" style={headerStyles}>Bloc Jams</span>
           <nav>
-            <Link to='/'>Landing</Link>
-            <Link to='/library'>Library</Link>
-          </nav>
-          <h1>Bloc Jams</h1>
+            <Link to='/' class="btn btn-outline-danger btn-sm" style={buttonStyles}>Home</Link>
+            <Link to='/library' class="btn btn-outline-danger btn-sm" style={buttonStyles}>Library</Link>
+         </nav>
         </header>
         <main>
           <Route exact path="/" component={Landing} />

@@ -10,15 +10,28 @@ class Library extends Component {
    }
 
   render() {
+
+    const styles = {
+      color: "#800000",
+      fontSize: 19,
+      fontWeight: "bold",
+    }
+
+    const imageStyle = {
+      height: 250,
+      width: 300,
+      paddingTop: 30,
+    }
+
    return (
      <section className='library'>
        {
           this.state.albums.map( (album, index) =>
             <Link to={`/album/${album.slug}`} key={index}>
-              <img src={album.albumCover} alt={album.title} />
-              <div>{album.title}</div>
-              <div>{album.artist}</div>
-              <div>{album.songs.length} songs</div>
+              <img class="rounded"  style={imageStyle} src={album.albumCover} alt={album.title} />
+              <div style={styles}>{album.title}</div>
+              <div style={styles}>{album.artist}</div>
+              <div style={styles}>{album.songs.length} songs</div>
             </Link>
           )
         }
