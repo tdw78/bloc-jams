@@ -12,14 +12,14 @@ class Library extends Component {
   render() {
 
     const styles = {
-      color: "#800000",
+      color: "#563E37",
       fontSize: 19,
       fontWeight: "bold",
     }
 
     const imageStyle = {
       height: 250,
-      width: 300,
+      width: 425,
       paddingTop: 30,
     }
 

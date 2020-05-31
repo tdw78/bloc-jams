@@ -75,7 +75,7 @@ class Album extends Component {
       }
 
       handleSongHover(song, index){
-        this.setState({isHovered: true});
+        //this.setState({isHovered: true});
       }
 
      handleOffHover(song, index){
@@ -144,13 +144,13 @@ class Album extends Component {
 
   render() {
     const imageStyle = {
-      height: 225,
-      width: 300,
+      height: 250,
+      width: 425,
       paddingTop: 30
     }
 
     const songName = {
-      color: "blue"
+      color: "#46353A"
     }
 
     const tableStyle = {
@@ -182,7 +182,7 @@ class Album extends Component {
                   onMouseOver={() => this.handleSongHover(song, index)}
                   onMouseLeave={()=> this.handleOffHover(song, index)}
                   >
-                  <td>{song[index + 1]}</td>
+                  {/* <td>{song[index + 1]}</td> */}
                   <td>{this.rowPlayPause(song, index)}</td>
                   <td style={songName}>{song.title}</td>
                   <td>{this.formatTime(song.duration)}</td>
